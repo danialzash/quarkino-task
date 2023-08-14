@@ -7,8 +7,37 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Quarkino Task
 
+### Getting Started
+
+To quickly set up and run this task, I've utilized "laravel sail" for seamless execution. Follow these steps after cloning or unzipping the project:
+
+1. Ensure Composer is installed on your system.
+
+2. Launch the Laravel Sail containers and network by running the following command:
+
+```shell
+sail up -d 
+```
+
+### Warmin Up the Project
+
+If you wish to start the project without manually setting up, use the following "quarkino" artisan command:
+```shell
+sail shell
+php artisan quarkino
+```
+Alternatively, you can manually apply migrations and seed the database:
+
+```
+sail shell
+php artisan migrate
+php artisan db:seed
+```
+Upon executing the "quarkino" command, a user named quarkino with the password also set as quarkino will be generated.
+
+Now you're all set to explore and interact with the project. Enjoy your experience with Laravel Sail!
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
