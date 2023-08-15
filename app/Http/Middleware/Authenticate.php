@@ -26,11 +26,11 @@ class Authenticate extends Middleware
         if ($accessToken) {
             $user = Auth::getProvider()->retrieveByCredentials(['remember_token' => $accessToken]);
             if ($user) {
-                $request->user = $user;
+                $request->merge(['user' => $user]);
                 return $next($request);
             }
         }
-        return response('Not Authenticated', 401);
+        return response()->json(['error' => "Not Authenticated"], 401);
     }
 
     /**
