@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,10 @@ class DatabaseSeeder extends Seeder
              'name' => 'quarkino',
              'email' => 'quarkino@gmail.com',
              'password' => env('QUARKINO_PASSWORD', "$2y$10$3ggWa7qAD3elHe9AwZNBzu.FSSqy1ObbPptxYeBYgWM9GfnuPknZ6"),
+         ]);
+
+         $this->call([
+             ProductSeeder::class,
          ]);
     }
 }
