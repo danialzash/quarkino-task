@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -25,5 +26,9 @@ class OrderController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 422);
         }
+    }
+
+    public function payment(Request $request) {
+        
     }
 }

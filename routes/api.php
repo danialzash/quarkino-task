@@ -22,6 +22,8 @@ Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/order/create', [\App\Http\Controllers\OrderController::class, 'store'])
         ->name('orders.store');
+    Route::post('/order/payment', [\App\Http\Controllers\OrderController::class, 'payment'])
+        ->name('order.payment');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
