@@ -22,3 +22,11 @@ Artisan::command('quarkino', function () {
     Artisan::call('app:warm-up-command');
 });
 
+Artisan::command('services', function () {
+    $servicesList = glob(app_path('Services') . '/*.php');
+    if (count($servicesList) > 0) {
+        echo implode("\n", array_map('basename', $servicesList)) . PHP_EOL;
+    } else {
+        echo "No service found in app/Services directory";
+    }
+});
