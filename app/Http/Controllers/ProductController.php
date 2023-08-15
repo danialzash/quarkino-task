@@ -15,9 +15,6 @@ class ProductController extends Controller
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse
     {
-        $page = $request->query('page', 1);
-        $perPage = Product::MAX_NUMBER_PER_PAGE;
-        $products = Product::paginate($perPage, ['*'], 'page', $page);
-        return response()->json($products);
+        return response()->json(Product::paginate());
     }
 }
