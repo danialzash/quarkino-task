@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login'])
     ->name("login");
 
+Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])
+    ->name('product.index');
+
 Route::group(['middleware' => 'auth'], function () {
     // Todo: add other every other routs to this group ;)
 });
