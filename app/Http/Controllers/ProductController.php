@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     /**
-     * This method return all products
-     * @return Collection
+     * This method returns maximum number of products per user request
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function index(): \Illuminate\Database\Eloquent\Collection
+    public function index(Request $request): \Illuminate\Http\JsonResponse
     {
-        return Product::all();
+        $page = $request->query('page', 1);
+        $perPage = Product::MAX_NUMBER_PER_PAGE;
+        $products = Product::paginate($perPage, ['*'], 'page', $page);
+        return response()->json($products);
     }
 }
