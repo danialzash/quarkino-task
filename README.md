@@ -65,6 +65,17 @@ Now you're all set to explore and interact with the project. Enjoy your experien
 ## Inventory Management
 
 The product are pre-defined in ProductSeeder class and when you run the seeder 100 different products are generated. Each of them has a random value between 0 and 100 which act as an initial inventory count.
+To add products which are pre-defined in products.csv file in database/data directory you should uncomment this line of code in ProductSeeder class:
+
+```php
+public function run(): void
+    {
+        Product::factory(100)->create();
+
+        // uncomment this line to seed products table with products.csv in database/data directory
+        // $this->seedFromCsvFile();
+    }
+```
 ## Purchase Request
 
 Each user can request different products with one request. The uri is localhost/api/order/create and user cookie should be set from users table. Every user has a `remember_token` which should be place in request cookie with access_token name: for example:`access_token=BT9ZuSWWaJ`
