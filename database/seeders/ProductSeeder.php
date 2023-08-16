@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         Product::factory(100)->create();
 
         // uncomment this line to seed products table with products.csv in database/data directory
-        // $this->seedFromCsvFile();
+        $this->seedFromCsvFile();
     }
 
     /**
