@@ -22,11 +22,9 @@ Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/order/create', [\App\Http\Controllers\OrderController::class, 'store'])
         ->name('orders.store');
-    Route::post('/order/payment', [\App\Http\Controllers\OrderController::class, 'payment'])
-        ->name('order.payment');
     Route::post('/payment/purchase/{order}', [\App\Http\Controllers\PaymentController::class, 'purchase'])
         ->name('payment.purchase');
-    Route::get('/payment/status}', [\App\Http\Controllers\PaymentController::class, 'getPurchaseStatus'])
+    Route::get('/payment/status', [\App\Http\Controllers\PaymentController::class, 'paymentStatus'])
         ->name('payment.status');
 });
 

@@ -27,9 +27,4 @@ class OrderController extends Controller
             return response()->json(['error' => $exception->getMessage()], 422);
         }
     }
-
-    public function payment(Request $request) {
-        $orderId = $request->order_id;
-
-    }
 }
