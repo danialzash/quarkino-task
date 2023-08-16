@@ -76,14 +76,20 @@ public function run(): void
         // $this->seedFromCsvFile();
     }
 ```
-## Purchase Request
 
-Each user can request different products with one request. The uri is localhost/api/order/create and user cookie should be set from users table. Every user has a `remember_token` which should be place in request cookie with access_token name: for example:`access_token=BT9ZuSWWaJ`
-In the request body you should place an array of product with order number. The API documentation will be added. If the order items are smaller than the current number of available product you will get error.
+You can use `products.index` route to get all of available products. Of course, each request get 15 products because of default pager. 
+
+## Purchase Request (Order Request)
+
+Each user can request different products with one request. The uri is localhost/api/order/create and user cookie should be set from users table. Every user has a `remember_token` which should be place in request cookie with access_token name: for example:`access_token=BT9ZuSWWaJ`. Instead of that user can send a request to `/api/login` with user and password body, the auth cookie has been set if user and password are correct.
+In the request body you should place an array of product with order number. The API documentation will be added. If requested order items quantity are greater than the current number of available product you will get error.
 
 ## Payment Process
 
-After buying some product, the request should be sent. order_id and user cookie just like before. Check API document for more information.
+After buying some product. User should pay for the order. `api/payment/purchase/{order}` route is for payment. 
+
+There are different Internet Payment Gateway (IPG) which user can use. The default service is IDpay service. The payment total_cost and id send to gateway and the service return the url to pay the costs. If payment be successful the order status updates to `PAID`.
+order_id and user cookie just like before. Check API document for more information.
 
 ## Users
 
@@ -94,11 +100,11 @@ With `php artisan quarkino` ten users with quarkino user added to users table by
 php artisan db:seed
 ```
 
-These commands create 10 users randomly with different names also there is a user with name `quarkino` with pass `interview` you can use this user for checking other options in this project.
+These commands create 10 users randomly with different names also there is a user with name `quarkino` with pass `quarkino` you can use this user for checking other options in this project.
 
 ## Error handling
 
-There are some validation exception like not enough products or user validation which return 422 and 401 response. Also there are order and payment request to make sure the user input is valid. 
+There are some validation exception like not enough products or user validation which return 422 and 401 response. Also, there are order and payment request to make sure the user input is valid. 
 
 ## Evaluation Criteria
 

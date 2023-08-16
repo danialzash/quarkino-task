@@ -2,10 +2,13 @@
 
 namespace App\Services\Gateways;
 
-use App\Exceptions\Gateways\GatewayClientException;
-use App\Exceptions\Gateways\GatewayException;
+use App\Exceptions\GatewayExceptions\GatewayClientException;
+use App\Exceptions\GatewayExceptions\GatewayException;
 use App\Models\Order;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 
 class IdPayGatewayService implements GatewayInterfaceService
@@ -24,13 +27,14 @@ class IdPayGatewayService implements GatewayInterfaceService
         if ($response->clientError()) {
             throw new GatewayException("payment request has a problem");
         }
-        if ($response->successful()) {
-            return redirect()->route('payment.status')->with(['status' => 'successful']);
-        } else {
-            return redirect()->route('payment.status')->withErrors(['error' => 'payment failed']);
-        }
+        return redirect()->route('payment.success');
     }
 
+    /**
+     * @param Request $request
+     * @return Application|ResponseFactory|\Illuminate\Foundation\Application|Response
+     * @throws GatewayClientException
+     */
     public function handleCallback(Request $request)
     {
         if ($this->validatePayment($request)) {
@@ -48,34 +52,67 @@ class IdPayGatewayService implements GatewayInterfaceService
     {
         return [
             'X-API-KEY' => config('payment.gateways.idpay.api_key'),
+            // other headers should be set for IDpayGatewayService
         ];
     }
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
     public function validatePayment(Request $request): bool
     {
-        $order = Order::findById($request->orderId);
+        $order = Order::find($request->order_id);
 
-        if ($order->total_price == $request->cost) {
-            $order->update([
-                'status' => Order::PAID
-            ]);
+        if ($this->isPaymentValid($order, $request->cost)) {
+            $this->markOrderAsPaid($order);
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
+    /**
+     * @param Order $order
+     * @param $cost
+     * @return bool
+     */
+    private function isPaymentValid(Order $order, $cost): bool
+    {
+        return $order->total_price == $cost;
+    }
+
+    /**
+     * @param Order $order
+     * @return void
+     */
+    private function markOrderAsPaid(Order $order): void
+    {
+        $order->update([
+            'status' => Order::PAID
+        ]);
+    }
+
+    /**
+     * @param int $orderId
+     * @param int $totalPrice
+     * @return array
+     */
     private function makeRequestBody(int $orderId, int $totalPrice): array
     {
         return [
             'order_id' => $orderId,
             'cost' => $totalPrice,
             'userName' => env('USERNAME') ?? null,
+            // other options should be added here
         ];
     }
 
+    /**
+     * @return string
+     */
     private function getEndpoint(): string
     {
-        return "https://api.idpay.ir/v1.1/";
+        return config('payment.gateways.idpay.endpoint');
     }
 }

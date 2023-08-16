@@ -27,6 +27,6 @@ Artisan::command('services', function () {
     if (count($servicesList) > 0) {
         echo implode("\n", array_map('basename', $servicesList)) . PHP_EOL;
     } else {
-        echo "No service found in app/Services directory";
+        echo "No service found in app/Services directory\n";
     }
 });

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\GatewayExceptions\GatewayClientException;
 use App\Models\Order;
 use App\Services\Gateways\GatewayInterfaceService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -23,9 +23,8 @@ class PaymentController extends Controller
     /**
      * Purchase an order
      * @param Order $order
-     * @return JsonResponse
      */
-    public function purchase(Order $order): \Illuminate\Http\JsonResponse
+    public function purchase(Order $order)
     {
         try {
             return $this->paymentService->requestPayment($order);
@@ -34,7 +33,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function paymentStatus(Request $request) {
+    public function paymentSuccess(Request $request) {
         try {
             return $this->paymentService->handleCallback($request);
         } catch (\Exception $exception) {
