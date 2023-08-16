@@ -5,7 +5,6 @@
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://redis.com"><img src="https://img.shields.io/badge/redis-v7.0.12-%23D82C20.svg?logo=redis&logoColor=white" alt="Redis Version"></a>
 <a href="https://mysql.com"><img src="https://img.shields.io/badge/mysql-v8.0-%2300758f.svg?logo=Mysql&logoColor=white" alt="Mysql Version"></a>
@@ -80,17 +79,12 @@ With `php artisan quarkino` ten users with quarkino user added to users table by
 php artisan db:seed
 ```
 
-Alternatively, these dummy users can be created after that with using seeder command:
-
-```bash
-php artisan database:seed
-```
-
 These commands create 10 users randomly with different names also there is a user with name `quarkino` with pass `interview` you can use this user for checking other options in this project.
 
 ## Error handling
 
 There are some validation exception like not enough products or user validation which return 422 and 401 response. Also there are order and payment request to make sure the user input is valid. 
+
 ## Evaluation Criteria
 
 To run tests of this project use. You can check these tests in `tests/Feature` directory
