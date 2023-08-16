@@ -9,15 +9,25 @@ return [
     |
      */
 
-    'default' => env('IPG', 'pasargad'),
+    'IPG_service' => env('PAYMENT_IPG_SERVICE', 'pasargad'),
+
+    'payment_method' => env('PAYMENT_IPG_METHOD', 'credentials'),
 
     'pasargad' => [
-        'gateway' => 'https://pasargad.com/quarkino',
-        'api-token' => env('PASARGAD_TOKEN')
+        'endpoint' => 'https://pasargad.com/quarkino',
+        'api-token' => env('PAYMENT_TOKEN'),
+        'credentials' => [
+            'username' => env('PASARGAD_USERNAME'),
+            'password' => env('PASSARGAD_PASSWORD')
+        ]
     ],
 
     'parsian' => [
-        'gateway' => 'https://parsian.com/quarkino',
-        'api-token' => env('PARSIAN_TOKEN')
+        'endpoint' => 'https://parsian.com/quarkino',
+        'api-token' => env('PAYMENT_TOKEN'),
+        'credentials' => [
+            'username' => env('PARSIAN_USERNAME'),
+            'password' => env('PARSIAN_PASSWORD')
+        ]
     ],
 ];

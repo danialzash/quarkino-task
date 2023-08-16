@@ -37,9 +37,13 @@ To quickly set up and run this task, I've utilized "laravel sail" for seamless e
 2. Launch the Laravel Sail containers and network by running the following command:
 
 ```shell
-sail up -d 
+./vendor/bin/sail up -d 
 ```
+However, instead of repeatedly typing vendor/bin/sail to execute Sail commands, you may wish to configure a shell alias that allows you to execute Sail's commands more easily:
 
+```shell
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
 ### Warmin Up the Project
 
 If you wish to start the project without manually setting up, use the following "quarkino" artisan command:
