@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\OrderServices;
 
-use App\Exceptions\NotEnoughQuantityException;
+use App\Exceptions\OrderExceptions\NotEnoughQuantityException;
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-use App\Http\Requests\StoreOrderRequest;
 
 class OrderService
 {
@@ -16,7 +16,7 @@ class OrderService
      * @throws NotEnoughQuantityException
      *
      */
-    public function createOrder(StoreOrderRequest $request): array
+    public function createOrder(StoreOrderRequest $request): \Illuminate\Http\JsonResponse
     {
         /** @var Order $order */
 
@@ -29,7 +29,10 @@ class OrderService
         // use queue for update quantities
         $this->updateAvailableQuantity($orderItems);
 
-        return ['orderId' => $order->id, 'totalPrice' => $totalPrice];
+        return response()->json([
+            'orderId' => $order->id,
+            'totalPrice' => $totalPrice,
+        ]);
     }
 
 

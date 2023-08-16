@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
-use App\Services\OrderService;
+use App\Services\OrderServices\OrderService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -18,7 +17,7 @@ class OrderController extends Controller
 
     /**
      * @param StoreOrderRequest $request
-     * @return array|JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreOrderRequest $request) {
         try {
@@ -26,10 +25,5 @@ class OrderController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 422);
         }
-    }
-
-    public function payment(Request $request) {
-        $orderId = $request->order_id;
-
     }
 }
