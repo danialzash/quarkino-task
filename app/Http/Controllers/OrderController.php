@@ -29,6 +29,7 @@ class OrderController extends Controller
     }
 
     public function payment(Request $request) {
-        
+        $orderId = $request->order_id;
+
     }
 }

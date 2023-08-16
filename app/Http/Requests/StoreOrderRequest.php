@@ -22,6 +22,7 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'order_items' => 'required'
         ];
     }
 }

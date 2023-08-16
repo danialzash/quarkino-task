@@ -24,6 +24,10 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('orders.store');
     Route::post('/order/payment', [\App\Http\Controllers\OrderController::class, 'payment'])
         ->name('order.payment');
+    Route::post('/payment/purchase/{order}', [\App\Http\Controllers\PaymentController::class, 'purchase'])
+        ->name('payment.purchase');
+    Route::get('/payment/status}', [\App\Http\Controllers\PaymentController::class, 'getPurchaseStatus'])
+        ->name('payment.status');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -25,6 +25,5 @@ trait OrderItemService
     private function calculateItemCost(OrderItem $orderItem): int
     {
         return $orderItem->order_quantity * $orderItem->product()->cost;
-
     }
 }
