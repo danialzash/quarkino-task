@@ -32,6 +32,7 @@ class OrderService
         return response()->json([
             'orderId' => $order->id,
             'totalPrice' => $totalPrice,
+            'paymentUrl' => route('payment.purchase', ['order' => $order->id]),
         ]);
     }
 

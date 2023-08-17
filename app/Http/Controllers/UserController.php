@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -17,7 +15,7 @@ class UserController extends Controller
      * This function is a mess but, it gets the request and validate it. if it was ok
      * set an access token cookie to the response
      * @param Request $request
-     * @return Application|ResponseFactory|\Illuminate\Foundation\Application|RedirectResponse|Response
+     * @return JsonResponse
      */
     public function login(Request $request)
     {
@@ -28,12 +26,10 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return response('OK', 200)
+            return response()->json([], 202)
                 ->cookie('access_token', $user->getRememberToken());
         }
 
-        return back()->withErrors([
-            'name' => 'the provided credential do not match our records.',
-        ])->onlyInput('name');
+        return response()->json(['error' => 'Username or password is incorrect. Please correct it and retry.'], 401);
     }
 }
