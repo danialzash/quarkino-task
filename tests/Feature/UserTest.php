@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use Database\Seeders\ProductSeeder;
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProductSeederTest extends TestCase
+class UserTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -15,8 +15,7 @@ class ProductSeederTest extends TestCase
      */
     public function test_example(): void
     {
-        $this->seed(ProductSeeder::class);
-        // Just for test 100 products are generate with fake names and 9 are generated from csv file.
-        $this->assertDatabaseCount('products', 109);
+        $this->seed(DatabaseSeeder::class);
+        $this->assertDatabaseCount('users', 11);
     }
 }
