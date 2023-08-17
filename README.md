@@ -89,7 +89,7 @@ In the request body you should place an array of product with order number. The 
 After buying some product. User should pay for the order. `api/payment/purchase/{order}` route is for payment. 
 
 There are different Internet Payment Gateway (IPG) which user can use. The default service is IDpay service. The payment total_cost and id send to gateway and the service return the url to pay the costs. If payment be successful the order status updates to `PAID`.
-order_id and user cookie just like before. Check API document for more information.
+order_id and user cookie just like before. Check [API document](postman_collection.json) for more information.
 
 ## Users
 

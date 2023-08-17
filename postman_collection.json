@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "048986e3-78d3-491b-9f89-56653916233e",
+		"name": "Quarkino-Task",
+		"description": "This API collection showcases a simulated online shopping process, designed to demonstrate my skills following an interview with **Quarkino** Company. The collection comprises five distinct APIs that collectively replicate various stages of an online shopping experience. These APIs interact seamlessly to provide a comprehensive overview of the process, from user authentication to order placement. [GitHub Link](https://github.com/danialzash/quarkino-task)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20863266"
+	},
+	"item": [
+		{
+			"name": "localhost/api/login?name=quarkino&password=quarkino",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/login?name=quarkino&password=quarkino",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "quarkino"
+						},
+						{
+							"key": "password",
+							"value": "quarkino"
+						}
+					]
+				},
+				"description": "Login api, send name and password, the response set access_token cookie of the user or get 401 Unauthorized status"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/api/products?page=2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/products?page=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Show list of available products. Each time 15 response can be seen."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/api/order/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"order_items\": {\n        \"12\": 7,\n        \"18\": 3\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/order/create",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"order",
+						"create"
+					]
+				},
+				"description": "Create order with product id and requested quantity"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/api/payment/purchase/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/payment/purchase/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"payment",
+						"purchase",
+						"1"
+					]
+				},
+				"description": "This api send current user to payment IPG to pay for order 1."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/api/payment/success?order_id=1&cost=6633280000",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/payment/success?order_id=1&cost=6633280000",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"payment",
+						"success"
+					],
+					"query": [
+						{
+							"key": "order_id",
+							"value": "1"
+						},
+						{
+							"key": "cost",
+							"value": "6633280000"
+						}
+					]
+				},
+				"description": "Api which is send from IPG to show payment has been successful. order_id and the cost which user paid are query params."
+			},
+			"response": []
+		}
+	]
+}
