@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Payment Gateway Name
+    | Internet Payment Gateway Name
     |--------------------------------------------------------------------------
     |
     | Here you may specify which of the payment gateway drivers below you wish
@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('PAYMENT_GATEWAY', 'zarinpal'),
+    'ipg' => env('PAYMENT_GATEWAY', 'zarinpal'),
 
     /*
     |--------------------------------------------------------------------------
