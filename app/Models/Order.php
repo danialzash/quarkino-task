@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use http\Exception\InvalidArgumentException;
+use App\Exceptions\OrderExceptions\InvalidOrderStatusException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,10 +44,13 @@ class Order extends Model
         return $this->status;
     }
 
+    /**
+     * @throws InvalidOrderStatusException
+     */
     public function setStatus(string $status): self
     {
         if (!in_array($status, Order::STATUS)) {
-            throw new InvalidArgumentException('Invalid status value');
+            throw new InvalidOrderStatusException('Invalid status value');
         }
         $this->update([
             'status' => $status,
