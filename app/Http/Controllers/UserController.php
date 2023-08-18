@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Contracts\Foundation\Application;
+use App\Http\Requests\RegisterRequest;
+use App\Services\UserServices\UserRegisterService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,5 +31,15 @@ class UserController extends Controller
         }
 
         return response()->json(['error' => 'Username or password is incorrect. Please correct it and retry.'], 401);
+    }
+
+    public function register(RegisterRequest $request, UserRegisterService $registerService): JsonResponse
+    {
+        try {
+            $registerService($request);
+            return response()->json('The user has been created.', 201);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => 'User register was unsuccessful please try again'], 401);
+        }
     }
 }
