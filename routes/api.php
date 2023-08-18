@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +16,7 @@ use App\Http\Controllers\UserController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/login', [UserController::class, 'login'])->name("login");
-Route::post('/register', [UserController::class, 'register'])->name("register");
+
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 
@@ -31,3 +29,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+require __DIR__.'/auth.php';
