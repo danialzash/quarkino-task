@@ -34,7 +34,86 @@
 				},
 				"description": "Login api, send name and password, the response set access_token cookie of the user or get 401 Unauthorized status"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "localhost/api/login?name=quarkino&password=quarkino",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/login?name=quarkino&password=quarkino",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"login"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "quarkino"
+								},
+								{
+									"key": "password",
+									"value": "quarkino"
+								}
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 08:07:48 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 08:07:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.9"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "access_token=RpEZjHyuTL; path=/; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
 		},
 		{
 			"name": "http://localhost/api/products?page=2",
@@ -60,7 +139,79 @@
 				},
 				"description": "Show list of available products. Each time 15 response can be seen."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "localhost/api/products?page=2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/products?page=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 08:07:51 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 08:07:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.9"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"current_page\": 2,\n    \"data\": [\n        {\n            \"id\": 16,\n            \"name\": \"Cristal Bernier\",\n            \"brand\": \"Selina\",\n            \"available_quantity\": 79,\n            \"cost\": 412920000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 17,\n            \"name\": \"Juanita Keeling\",\n            \"brand\": \"Hortense\",\n            \"available_quantity\": 28,\n            \"cost\": 690643000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 18,\n            \"name\": \"Camylle Farrell\",\n            \"brand\": \"Samanta\",\n            \"available_quantity\": 14,\n            \"cost\": 551991000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 19,\n            \"name\": \"Mr. Merle Langworth\",\n            \"brand\": \"Reyna\",\n            \"available_quantity\": 52,\n            \"cost\": 1638000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 20,\n            \"name\": \"Madonna Haley\",\n            \"brand\": \"Jaquelin\",\n            \"available_quantity\": 1,\n            \"cost\": 197432000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 21,\n            \"name\": \"Amelie Spencer\",\n            \"brand\": \"Isobel\",\n            \"available_quantity\": 63,\n            \"cost\": 350211000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 22,\n            \"name\": \"Garland Weimann\",\n            \"brand\": \"Frieda\",\n            \"available_quantity\": 27,\n            \"cost\": 595908000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 23,\n            \"name\": \"Moshe Hirthe\",\n            \"brand\": \"Ressie\",\n            \"available_quantity\": 0,\n            \"cost\": 689647000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 24,\n            \"name\": \"Thomas Cartwright\",\n            \"brand\": \"Beth\",\n            \"available_quantity\": 76,\n            \"cost\": 699066000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 25,\n            \"name\": \"Miss Madge Durgan MD\",\n            \"brand\": \"Tamia\",\n            \"available_quantity\": 48,\n            \"cost\": 628029000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 26,\n            \"name\": \"Matilde Stamm DDS\",\n            \"brand\": \"Oma\",\n            \"available_quantity\": 90,\n            \"cost\": 878484000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 27,\n            \"name\": \"Dr. D'angelo Kozey I\",\n            \"brand\": \"Greta\",\n            \"available_quantity\": 71,\n            \"cost\": 263090000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Noemie Murphy\",\n            \"brand\": \"Providenci\",\n            \"available_quantity\": 42,\n            \"cost\": 76208000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 29,\n            \"name\": \"Ceasar Goyette Jr.\",\n            \"brand\": \"Sister\",\n            \"available_quantity\": 18,\n            \"cost\": 700613000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        },\n        {\n            \"id\": 30,\n            \"name\": \"Hester Ebert\",\n            \"brand\": \"Marina\",\n            \"available_quantity\": 70,\n            \"cost\": 196161000,\n            \"created_at\": \"2023-08-18T08:07:43.000000Z\",\n            \"updated_at\": \"2023-08-18T08:07:43.000000Z\"\n        }\n    ],\n    \"first_page_url\": \"http://localhost/api/products?page=1\",\n    \"from\": 16,\n    \"last_page\": 8,\n    \"last_page_url\": \"http://localhost/api/products?page=8\",\n    \"links\": [\n        {\n            \"url\": \"http://localhost/api/products?page=1\",\n            \"label\": \"&laquo; Previous\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=1\",\n            \"label\": \"1\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=2\",\n            \"label\": \"2\",\n            \"active\": true\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=3\",\n            \"label\": \"3\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=4\",\n            \"label\": \"4\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=5\",\n            \"label\": \"5\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=6\",\n            \"label\": \"6\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=7\",\n            \"label\": \"7\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=8\",\n            \"label\": \"8\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost/api/products?page=3\",\n            \"label\": \"Next &raquo;\",\n            \"active\": false\n        }\n    ],\n    \"next_page_url\": \"http://localhost/api/products?page=3\",\n    \"path\": \"http://localhost/api/products\",\n    \"per_page\": 15,\n    \"prev_page_url\": \"http://localhost/api/products?page=1\",\n    \"to\": 30,\n    \"total\": 109\n}"
+				}
+			]
 		},
 		{
 			"name": "localhost/api/order/create",
@@ -89,7 +240,82 @@
 				},
 				"description": "Create order with product id and requested quantity"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "localhost/api/order/create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_items\": {\n        \"12\": 7,\n        \"18\": 3\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/order/create",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"order",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 08:08:59 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 08:08:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.9"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"order\": {\n        \"user_id\": 11,\n        \"status\": \"calculated\",\n        \"total_price\": 8380789000,\n        \"updated_at\": \"2023-08-18T08:08:59.000000Z\",\n        \"created_at\": \"2023-08-18T08:08:59.000000Z\",\n        \"id\": 2\n    },\n    \"totalPrice\": 8380789000,\n    \"paymentUrl\": \"http://localhost/api/payment/purchase/2\"\n}"
+				}
+			]
 		},
 		{
 			"name": "localhost/api/payment/purchase/1",
@@ -140,7 +366,83 @@
 				},
 				"description": "Api which is send from IPG to show payment has been successful. order_id and the cost which user paid are query params."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "localhost/api/payment/success?order_id=1&cost=6633280000",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/payment/success?order_id=2&cost=7891820000",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"payment",
+								"success"
+							],
+							"query": [
+								{
+									"key": "order_id",
+									"value": "2"
+								},
+								{
+									"key": "cost",
+									"value": "7891820000"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 05:11:59 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Aug 2023 05:11:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.9"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "successful"
+				}
+			]
 		}
 	]
 }

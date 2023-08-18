@@ -26,11 +26,9 @@ class OrderService
         $this->createOrderItems($orderItems, $order);
         $totalPrice = $this->calculateOrderTotalPrice($order);
         $this->updateOrderStatus($order, $totalPrice);
-        // use queue for update quantities
-        $this->updateAvailableQuantity($orderItems);
 
         return response()->json([
-            'orderId' => $order->id,
+            'order' => $order,
             'totalPrice' => $totalPrice,
             'paymentUrl' => route('payment.purchase', ['order' => $order->id]),
         ]);
@@ -44,9 +42,8 @@ class OrderService
     {
         // change it and make one query instead of this
         foreach ($orderItems as $productId => $orderQuantity) {
-
-            $product = Product::where('id', $productId)->first();
-            if ($orderQuantity > $product->available_quantity) {
+            $product = Product::find($productId);
+            if ($orderQuantity >= $availableQuantity = $product->getAvailableQuantity()) {
                 throw new NotEnoughQuantityException("variables are more than you want in $product->name");
             }
 
@@ -75,13 +72,15 @@ class OrderService
     {
         $orderId = $order->id;
         foreach ($orderItems as $productId => $orderQuantity) {
-            $productCost = Product::find($productId)->first()->cost;
+            $product = Product::find($productId);
             $newOrderItem = new OrderItem();
             $newOrderItem->order_id = $orderId;
             $newOrderItem->product_id = $productId;
             $newOrderItem->order_quantity = $orderQuantity;
-            $newOrderItem->cost = $productCost * $orderQuantity;
+            $newOrderItem->cost = $product->getCost() * $orderQuantity;
             $newOrderItem->save();
+
+            $product->decreaseQuantity($orderQuantity);
         }
     }
 
@@ -91,10 +90,7 @@ class OrderService
      */
     private function calculateOrderTotalPrice(Order $order): int
     {
-        $itemCostsArray = $order->orderItems()
-            ->pluck('cost')
-            ->toArray();
-        return array_sum($itemCostsArray);
+        return $order->orderItems()->sum('cost');
     }
 
     /**
@@ -104,21 +100,8 @@ class OrderService
      */
     private function updateOrderStatus(Order $order, int $totalPrice): void
     {
-        $order->update(['total_price' => $totalPrice, 'status' => Order::CALCULATED]);
+        $order->setTotalPrice($totalPrice)
+            ->setStatus(Order::CALCULATED);
     }
 
-    /**
-     * @param array $orderItems
-     * @return void
-     */
-    private function updateAvailableQuantity(array $orderItems): void
-    {
-
-        foreach ($orderItems as $productId => $orderQuantity) {
-            $product = Product::find($productId);
-            $previousQuantity = $product->available_quantity;
-            $updatedQuantity = $previousQuantity - $orderQuantity;
-            $product->update(['available_quantity' => $updatedQuantity]);
-        }
-    }
 }
