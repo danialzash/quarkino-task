@@ -22,8 +22,10 @@ Develop a backend web application (API structure only) to simulate a shopping pr
 - [Payment Process](#payment-process)
 - [Users](#users)
 - [Error Handling and Testing](#error-handling)
+- [Other Features](#other-features)
 - [Evaluation Criteria](#evaluation-criteria)
 - [Connect with Me](#connect-with-me-at)
+
 
 Click in upper links to see how to implement each part or read installation guid.
 
@@ -92,6 +94,11 @@ order_id and user cookie just like before. Check [API document](postman_collecti
 
 ## Users
 
+- **Register**: 
+New users can register by posting their data to `api/register` route. 
+The method should be post and `name`, `email`, `password` and `password_confirmation` should be sent.
+
+- **UserFactory**: 
 Users are predefined and are created with auto seeder and UserFactory in database/factory directory.
 With `php artisan quarkino` ten users with quarkino user added to users table by default. If you didn't run that you can handle it manually:
 
@@ -99,11 +106,22 @@ With `php artisan quarkino` ten users with quarkino user added to users table by
 php artisan db:seed
 ```
 
-These commands create 10 users randomly with different names also there is a user with name `quarkino` with pass `quarkino` you can use this user for checking other options in this project.
-
+- These commands create 10 users randomly with different names also there is a user with name `quarkino` with pass `quarkino` you can use this user for checking other options in this project.
+- **Login**: User can log in with `api/login` route, they should send their email with password via post method. 
 ## Error handling
 
+- **Workflow**: `.github/workflows/laravel.yml` is a workflow which run every tests through **tests** directory. I create some different exception with different messages to handle errors.
 There are some validation exception like not enough products or user validation which return 422 and 401 response. Also, there are order and payment request to make sure the user input is valid. 
+
+## Other Features
+
+- **Events**: [UserRegisteredEvent](app/Events/UserRegisteredEvent.php) is an event which invokes when a user registered and [WelcomeNotifierListener](/app/Listener/WelcomeNotifierListener.php) get it, and it should send a notification to users.
+- **Logging**: Default channel for logging is stack but in **.env** file there is a **LOG_CHANNEL=slack** and **LOG_SLACK_WEBHOOK_URL** has been set (and I know I should encrypt .env file but to simplify it I've just don't push .env file). The slack level is also set to info level in _logging.php_ in config directory. Logs are sent to my error_notifier channel in slack application.
+```php
+event(new UserRegisteredEvent($user));
+```
+<p align="center"><a href="https://quarkino.com/en" target="_blank"><img src="public/photos/slack.jpeg" width="500" alt="Quarkino Logo"></a></p>
+
 
 ## Evaluation Criteria
 
