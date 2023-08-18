@@ -17,7 +17,7 @@ class OrderItem extends Model
      */
     protected $fillable = [
         'order_quantity',
-        'order',
+        'order_id',
     ];
 
     public function product(): BelongsTo
@@ -29,4 +29,51 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    public function getQuantity(): int
+    {
+        return $this->order_quantity;
+    }
+
+    public function setOrderItemQuantity(int $quantity): self
+    {
+        $this->update([
+            'order_quantity' => $quantity,
+        ]);
+
+        return $this;
+    }
+
+    public function setCost(int $cost): self
+    {
+        $this->update([
+            'cost' => $cost
+        ]);
+
+        return $this;
+    }
+
+    public function getCost(): int
+    {
+        return $this->cost;
+    }
+
+    public function setOrderId(int $orderId): self
+    {
+        $this->update([
+            'order_id' => $orderId,
+        ]);
+
+        return $this;
+    }
+
+    public function setProductId(int $productId): self
+    {
+        $this->update([
+            'order_id' => $productId,
+        ]);
+
+        return $this;
+    }
+
 }
