@@ -75,24 +75,29 @@ class Product extends Model
         }
     }
 
+    /**
+     * @return int
+     */
     public function getAvailableQuantity(): int
     {
         return $this->available_quantity;
     }
 
     /**
-     * @throws NotEnoughQuantityException
+     * Decrease number of bought products from available quantity
+     * @param int $boughtCount
+     * @return $this
      */
     public function decreaseQuantity(int $boughtCount): self
     {
-        $this->setAvailableQuantity($this->getAvailableQuantity() - $boughtCount);
+        $this->decrement('available_quantity', $boughtCount);
 
         return $this;
     }
 
     public function increaseQuantity(int $addedQuantity): self
     {
-        $this->setAvailableQuantity($this->getAvailableQuantity() + $addedQuantity);
+        $this->increment('available_quantity', $addedQuantity);
 
         return $this;
     }
