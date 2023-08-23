@@ -24,6 +24,7 @@ services:
             - sail
         depends_on:
             - mysql
+            - elasticsearch
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -48,9 +49,27 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
+        environment:
+            - discovery.type=single-node
+            - Username=dani
+            - Password=dani
+        ports:
+            - '9200:9200'
+            - '9300:9300'
+        volumes:
+            -   'sail-elasticsearch:/usr/share/elasticsearch/data'
+        networks:
+            - sail
+            - elastic
 networks:
     sail:
         driver: bridge
+    elastic:
+        driver: bridge
 volumes:
     sail-mysql:
+        driver: local
+    sail-elasticsearch:
         driver: local
