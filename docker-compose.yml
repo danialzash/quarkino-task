@@ -50,26 +50,25 @@ services:
             retries: 3
             timeout: 5s
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+        container_name: elasticsearch
         environment:
+            - node.name=elasticsearch
+            - cluster.name=my-cluster
             - discovery.type=single-node
-            - Username=dani
-            - Password=dani
-        ports:
-            - '9200:9200'
-            - '9300:9300'
         volumes:
-            -   'sail-elasticsearch:/usr/share/elasticsearch/data'
+            - elasticsearch_data:/usr/share/elasticsearch/data
+        ports:
+            - "9200:9200"
+            - "9300:9300"
         networks:
             - sail
-            - elastic
 networks:
     sail:
-        driver: bridge
-    elastic:
         driver: bridge
 volumes:
     sail-mysql:
         driver: local
-    sail-elasticsearch:
+    elasticsearch_data:
         driver: local
+
